@@ -83,11 +83,24 @@
     </ul>
   </div>
   <div id="form">
-   <form action="https://api.whatsapp.com/send?phone=+919362807677&text=Hello" method="get"> <!-- change this to your WhatsApp number and message -->
-      <input type="text" name="name" placeholder="Your name" required>
-      <textarea name="feedback" placeholder="Your feedback" rows="5" required></textarea>
-      <button type="submit">Send to WhatsApp</button>
-    </form>
+  <form action="https://wa.me/919362807677" method="POST">
+  <input type="text" name="name" placeholder="Your name" required>
+  <textarea name="feedback" placeholder="Your feedback" rows="5" required></textarea>
+  <button type="submit">Send to WhatsApp</button>
+  <script>
+    // This script will append the name and feedback to the action URL as a text parameter
+    let form = document.querySelector("form");
+    form.addEventListener("submit", function(event) {
+      event.preventDefault();
+      let name = form.elements["name"].value;
+      let feedback = form.elements["feedback"].value;
+      let message = name + "\n" + feedback; // Concatenate name and feedback with a newline
+      let encodedMessage = encodeURIComponent(message); // Encode the message as a URL parameter
+      let action = form.action + "?text=" + encodedMessage; // Append the text parameter to the action URL
+      window.location.href = action; // Redirect to the action URL
+    });
+  </script>
+</form>
   </div>
   <script>
     // JavaScript code to make the playlist work
