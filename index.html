@@ -1,13 +1,32 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sample Rik Page</title>
   <style>
     /* CSS code to style the page */
     body {
-      margin: 150;
-      background-image: url("https://mir-s3-cdn-cf.behance.net/project_modules/disp/5bb55014437797.56283f000aa77.jpg"); /* change this to your image URL */
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    /* Background image animation */
+    #background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url("https://mir-s3-cdn-cf.behance.net/project_modules/disp/5bb55014437797.56283f000aa77.jpg");
+      animation: animateBackground 60s linear infinite;
+      z-index: -1;
+    }
+
+    @keyframes animateBackground {
+      0% { background-position: 0% 0%; }
+      100% { background-position: 100% 100%; }
     }
 
     h1 {
@@ -18,7 +37,7 @@
     }
 
     #player {
-      width: 300px;
+      width: 400px;
       height: 150px;
       margin: 30px auto;
       background-color: rgba(255, 255, 255, 0.8);
@@ -28,7 +47,7 @@
 
     #playlist {
       list-style: none;
-      padding: 10px;
+      padding: 20px;
       margin: 0;
     }
 
@@ -45,7 +64,7 @@
     }
 
     #form {
-      width: 300px;
+      width: 400px;
       height: 200px;
       margin: 20px auto;
       background-color: rgba(255, 255, 255, 0.789);
@@ -70,6 +89,9 @@
   </style>
 </head>
 <body>
+  <!-- Background image animation -->
+  <div id="background"></div>
+
   <h1>Sample Rik Page</h1>
   <div id="player">
     <audio id="audio" controls>
@@ -83,24 +105,24 @@
     </ul>
   </div>
   <div id="form">
-  <form action="https://wa.me/919362807677" method="POST">
-  <input type="text" name="name" placeholder="Your name" required>
-  <textarea name="feedback" placeholder="Your feedback" rows="5" required></textarea>
-  <button type="submit">Send to WhatsApp</button>
-  <script>
-    // This script will append the name and feedback to the action URL as a text parameter
-    let form = document.querySelector("form");
-    form.addEventListener("submit", function(event) {
-      event.preventDefault();
-      let name = form.elements["name"].value;
-      let feedback = form.elements["feedback"].value;
-      let message = name + "\n" + feedback; // Concatenate name and feedback with a newline
-      let encodedMessage = encodeURIComponent(message); // Encode the message as a URL parameter
-      let action = form.action + "?text=" + encodedMessage; // Append the text parameter to the action URL
-      window.location.href = action; // Redirect to the action URL
-    });
-  </script>
-</form>
+    <form action="https://wa.me/919362807677" method="POST">
+      <input type="text" name="name" placeholder="Your name" required>
+      <textarea name="feedback" placeholder="Your feedback" rows="5" required></textarea>
+      <button type="submit">Send to WhatsApp</button>
+      <script>
+        // This script will append the name and feedback to the action URL as a text parameter
+        let form = document.querySelector("form");
+        form.addEventListener("submit", function(event) {
+          event.preventDefault();
+          let name = form.elements["name"].value;
+          let feedback = form.elements["feedback"].value;
+          let message = name + "\n" + feedback; // Concatenate name and feedback with a newline
+          let encodedMessage = encodeURIComponent(message); // Encode the message as a URL parameter
+          let action = form.action + "?text=" + encodedMessage; // Append the text parameter to the action URL
+          window.location.href = action; // Redirect to the action URL
+        });
+      </script>
+    </form>
   </div>
   <script>
     // JavaScript code to make the playlist work
