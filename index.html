@@ -15,7 +15,7 @@
       background-repeat: no-repeat;
       background-attachment: fixed;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
       min-height: 100vh;
     }
@@ -35,6 +35,7 @@
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
       padding: 20px;
       transition: transform 0.3s ease;
+      margin-bottom: 20px; /* Added margin for better separation on mobile */
     }
 
     #player.playing {
@@ -73,7 +74,7 @@
       border-radius: 20px;
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
       padding: 20px;
-      margin-top: 30px;
+      margin-bottom: 20px; /* Added margin for better separation on mobile */
     }
 
     #form input[type="text"],
@@ -115,19 +116,7 @@
 
     /* Music beat animation */
     #beat {
-      position: absolute;
-      top: 50%;
-      right: -20px;
-      width: 10px;
-      height: 10px;
-      background-color: #ff0; /* Adjust the color as needed */
-      border-radius: 50%;
-      animation: beat-pulse 0.5s infinite alternate;
-    }
-
-    @keyframes beat-pulse {
-      0% { transform: scale(1); }
-      100% { transform: scale(1.2); }
+      display: none; /* Hide beat animation on mobile */
     }
 
     /* Audio control button animation */
@@ -145,6 +134,26 @@
 
     audio::-webkit-media-controls-start-playback-button:hover, audio::-webkit-media-controls-pause-playback-button:hover {
       transform: scale(1.1);
+    }
+
+    @media (min-width: 600px) {
+      /* Show beat animation on larger screens */
+      #beat {
+        display: block;
+        position: absolute;
+        top: 50%;
+        right: -20px;
+        width: 10px;
+        height: 10px;
+        background-color: #ff0; /* Adjust the color as needed */
+        border-radius: 50%;
+        animation: beat-pulse 0.5s infinite alternate;
+      }
+
+      @keyframes beat-pulse {
+        0% { transform: scale(1); }
+        100% { transform: scale(1.2); }
+      }
     }
 
   </style>
