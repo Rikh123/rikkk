@@ -23,12 +23,13 @@
     h1 {
       color: rgba(255, 255, 255, 0.9);
       text-align: center;
-      font-size: 36px;
-      margin-bottom: 30px;
+      font-size: 24px; /* Decreased font size for mobile */
+      margin-bottom: 20px; /* Decreased margin for mobile */
     }
 
     #player {
-      width: 400px;
+      width: 90%; /* Adjusted width for mobile */
+      max-width: 400px; /* Set maximum width for larger screens */
       background-color: rgba(255, 255, 255, 0.8);
       border-radius: 30px;
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
@@ -49,7 +50,7 @@
     #playlist li a {
       color: black;
       text-decoration: none;
-      font-size: 18px;
+      font-size: 16px; /* Decreased font size for mobile */
       display: block;
       padding: 10px;
       border-radius: 5px;
@@ -66,7 +67,8 @@
     }
 
     #form {
-      width: 400px;
+      width: 90%; /* Adjusted width for mobile */
+      max-width: 400px; /* Set maximum width for larger screens */
       background-color: rgba(255, 255, 255, 0.8);
       border-radius: 20px;
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
@@ -76,7 +78,7 @@
 
     #form input[type="text"],
     #form textarea {
-      width: calc(100% - 20px);
+      width: 100%; /* Adjusted width for mobile */
       margin: 10px auto;
       padding: 10px;
       border: 1px solid #ccc;
