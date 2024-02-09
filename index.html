@@ -111,6 +111,40 @@
       margin-bottom: 10px;
     }
 
+    /* Music beat animation */
+    #beat {
+      position: absolute;
+      top: 50%;
+      right: -20px;
+      width: 10px;
+      height: 10px;
+      background-color: #ff0; /* Adjust the color as needed */
+      border-radius: 50%;
+      animation: beat-pulse 0.5s infinite alternate;
+    }
+
+    @keyframes beat-pulse {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.2); }
+    }
+
+    /* Audio control button animation */
+    audio::-webkit-media-controls-start-playback-button, audio::-webkit-media-controls-pause-playback-button {
+      display: block;
+      width: 50px;
+      height: 50px;
+      background-color: #4CAF50; /* Adjust the color as needed */
+      border-radius: 50%;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    audio::-webkit-media-controls-start-playback-button:hover, audio::-webkit-media-controls-pause-playback-button:hover {
+      transform: scale(1.1);
+    }
+
   </style>
 </head>
 <body>
