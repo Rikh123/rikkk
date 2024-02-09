@@ -1,32 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sample Rik Page</title>
   <style>
     /* CSS code to style the page */
     body {
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-    }
-
-    /* Background image animation */
-    #background {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: url("https://mir-s3-cdn-cf.behance.net/project_modules/disp/5bb55014437797.56283f000aa77.jpg");
-      animation: animateBackground 60s linear infinite;
-      z-index: -1;
-    }
-
-    @keyframes animateBackground {
-      0% { background-position: 0% 0%; }
-      100% { background-position: 100% 100%; }
+      margin: 15;
+      background-image: url("https://mir-s3-cdn-cf.behance.net/project_modules/disp/5bb55014437797.56283f000aa77.jpg"); /* change this to your image URL */
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
     }
 
     h1 {
@@ -89,9 +70,6 @@
   </style>
 </head>
 <body>
-  <!-- Background image animation -->
-  <div id="background"></div>
-
   <h1>Sample Rik Page</h1>
   <div id="player">
     <audio id="audio" controls>
