@@ -1,110 +1,151 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sample Rik Page</title>
   <style>
     /* CSS code to style the page */
     body {
-      margin: 15;
-      background-image: url("https://mir-s3-cdn-cf.behance.net/project_modules/disp/5bb55014437797.56283f000aa77.jpg"); /* change this to your image URL */
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-image: url("https://mir-s3-cdn-cf.behance.net/project_modules/disp/5bb55014437797.56283f000aa77.jpg");
       background-size: cover;
       background-repeat: no-repeat;
       background-attachment: fixed;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
     }
 
     h1 {
-      color: rgba(255, 255, 255, 0.608);
+      color: rgba(255, 255, 255, 0.9);
       text-align: center;
-      font-family: Arial, sans-serif;
       font-size: 36px;
+      margin-bottom: 30px;
     }
 
     #player {
       width: 400px;
-      height: 150px;
-      margin: 30px auto;
       background-color: rgba(255, 255, 255, 0.8);
       border-radius: 30px;
-      box-shadow: 100 100 100px black;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+      padding: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    #player.playing {
+      transform: scale(1.05);
     }
 
     #playlist {
       list-style: none;
-      padding: 20px;
+      padding: 0;
       margin: 0;
     }
 
     #playlist li a {
       color: black;
       text-decoration: none;
-      font-family: Arial, sans-serif;
       font-size: 18px;
+      display: block;
+      padding: 10px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    #playlist li a:hover {
+      background-color: rgba(0, 0, 0, 0.1);
     }
 
     #playlist .current-song a {
-      color: rgba(255, 102, 0, 0.575);
-      font-weight: italic;
+      color: rgba(255, 102, 0, 0.9);
+      font-weight: bold;
     }
 
     #form {
       width: 400px;
-      height: 200px;
-      margin: 20px auto;
-      background-color: rgba(255, 255, 255, 0.789);
-      border-radius: 10px;
-      box-shadow: 0 0 10px black;
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+      padding: 20px;
+      margin-top: 30px;
     }
 
-    #form input, #form textarea, #form button {
-      display: block;
-      width: 80%;
+    #form input[type="text"],
+    #form textarea {
+      width: calc(100% - 20px);
       margin: 10px auto;
-      font-family: Arial, sans-serif;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
       font-size: 16px;
+      box-sizing: border-box;
+    }
+
+    #form textarea {
+      height: 100px;
     }
 
     #form button {
-      background-color: rgb(162, 0, 255);
-      color: white;
+      display: block;
+      width: 100%;
+      padding: 10px;
       border: none;
+      border-radius: 5px;
+      background-color: rgb(162, 0, 255);
+      color: #fff;
+      font-size: 16px;
       cursor: pointer;
+      transition: background-color 0.3s ease;
     }
+
+    #form button:hover {
+      background-color: rgb(125, 0, 200);
+    }
+
+    #audio {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
   </style>
 </head>
 <body>
-  <h1>Sample Rik Page</h1>
   <div id="player">
+    <h1>Sample Rik Page</h1>
     <audio id="audio" controls>
       <source src="abc.mp3" type="audio/mpeg"> <!-- change this to your song URL -->
       Your browser does not support the audio element.
     </audio>
     <ul id="playlist">
       <li class="current-song"><a href="bcd.mp3">Position</a></li> <!-- change this to your song name and URL -->
-      <li><a href="cd.mp3">Yes </a></li> <!-- change this to your song name and URL -->
+      <li><a href="cd.mp3">Yes</a></li> <!-- change this to your song name and URL -->
       <li><a href="ev.mp3">Everday</a></li> <!-- change this to your song name and URL -->
     </ul>
   </div>
   <div id="form">
-    <form action="https://wa.me/919362807677" method="POST">
+    <form action="#" method="POST">
       <input type="text" name="name" placeholder="Your name" required>
       <textarea name="feedback" placeholder="Your feedback" rows="5" required></textarea>
-      <button type="submit">Send to WhatsApp</button>
-      <script>
-        // This script will append the name and feedback to the action URL as a text parameter
-        let form = document.querySelector("form");
-        form.addEventListener("submit", function(event) {
-          event.preventDefault();
-          let name = form.elements["name"].value;
-          let feedback = form.elements["feedback"].value;
-          let message = name + "\n" + feedback; // Concatenate name and feedback with a newline
-          let encodedMessage = encodeURIComponent(message); // Encode the message as a URL parameter
-          let action = form.action + "?text=" + encodedMessage; // Append the text parameter to the action URL
-          window.location.href = action; // Redirect to the action URL
-        });
-      </script>
+      <button type="submit">Send Feedback</button>
     </form>
   </div>
   <script>
     // JavaScript code to make the playlist work
     var audio = document.getElementById("audio");
+    var player = document.getElementById("player");
+
+    audio.addEventListener("play", function() {
+      player.classList.add("playing");
+    });
+
+    audio.addEventListener("pause", function() {
+      player.classList.remove("playing");
+    });
+
     var playlist = document.getElementById("playlist");
     var tracks = playlist.getElementsByTagName("a");
     var currentTrack = 0;
